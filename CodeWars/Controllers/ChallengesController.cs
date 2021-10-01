@@ -20,6 +20,7 @@ namespace CodeWars.Controllers
         }
         #endregion
 
+        #region Challenge #1: DuplicateEncoder
         //Challenge #1: Duplicate Encoder
         [HttpGet("duplicate-encoder/{word}")]
         public IActionResult DuplicateEncoder(string word)
@@ -28,6 +29,33 @@ namespace CodeWars.Controllers
 
             return Ok(response);
         }
-        
+        #endregion
+
+        #region Challenge #2: Persistent Bugger
+        //Challenge #2: Persistent Bugger
+        [HttpGet("persistent-bugger/{number}")]
+        public IActionResult Persistence(long number)
+        {
+            var response = _solutionService.Persistence(number);
+
+            return Ok(response);
+        }
+        #endregion
+
+        #region Challenge #3: Tribonacci Sequence
+        //Challenge #3: Tribonacci Sequence
+        #endregion
+
+        #region Challenge #4: Regex validate PIN code
+        //Challenge #4: Regex validate PIN code
+        [HttpGet("validate-pin/{pin}")]
+        public IActionResult ValidatePin(string pin)
+        {
+            var response = _solutionService.ValidatePin(pin);
+
+            return Ok(response);
+        }
+        #endregion
+
     }
 }
