@@ -33,7 +33,7 @@ namespace CodeWars.Controllers
 
         #region Challenge #2: Persistent Bugger
         //Challenge #2: Persistent Bugger
-        [HttpGet("persistent-bugger/{number}")]
+        [HttpGet("best-persistent-bugger/{number}")]
         public IActionResult Persistence(long number)
         {
             var response = _bestService.Persistence(number);
@@ -48,13 +48,29 @@ namespace CodeWars.Controllers
 
         #region Challenge #4: Regex validate PIN code
         //Challenge #4: Regex validate PIN code
-        [HttpGet("validate-pin/{pin}")]
+        [HttpGet("best-validate-pin/{pin}")]
         public IActionResult ValidatePin(string pin)
         {
             var response = _bestService.ValidatePin(pin);
 
             return Ok(response);
         }
+        #endregion
+
+        #region Challennge #5: Sum of odd numbers
+        // Sum of odd numbers
+        [HttpGet("best-sum-of-odd-numbers/{number}")]
+        public IActionResult RowSumOddNumbers(long number)
+        {
+            var response = _bestService.rowSumOddNumbers(number);
+
+            return Ok(response);
+        }
+        #endregion
+
+        #region Challennge #6: Valid Braces
+        // Sum of odd numbers
+
         #endregion
     }
 }

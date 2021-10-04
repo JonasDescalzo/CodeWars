@@ -74,6 +74,26 @@ namespace CodeWars.Service
 
         #region Challenge #3: Tribonacci Sequence
         //Challenge #3: Tribonacci Sequence
+        public double[] Tribonacci(double[] signature, int n) // new double []{1,1,1}, 10
+        {
+            var result = new double[n];
+
+            for (int i = 0; i < n; i++)
+            {
+                result[i] = signature.Length - 1 >= i ? signature[i] : 0;
+            }
+
+            for (int i = 3; i < n; i++)
+            {
+                result[i] = signature.Sum();
+                signature[0] = signature[1];
+                signature[1] = signature[2];
+                signature[2] = result[i];
+            }
+
+            return result;
+        }
+        //expected: 1, 1, 1, 3, 5, 9, 17, 31, 57, 105
 
         #endregion
 
@@ -89,6 +109,48 @@ namespace CodeWars.Service
 
             return pin.Length == 4 || pin.Length == 6;
         }
+        #endregion
+
+        #region Challennge #5: Sum of odd numbers
+        // Sum of odd numbers
+        public long rowSumOddNumbers(long n)
+        {
+            long sum = 0;
+
+            long oddNumbersCount = n;
+
+            for (int i = 0; i < n; i++)
+            {
+                oddNumbersCount += i;
+            }
+
+            var rowNumbers = new List<long>();
+
+            long index = 0;
+            while (rowNumbers.Count < oddNumbersCount)
+            {
+
+                if (index % 2 == 1)
+                {
+                    rowNumbers.Add(index);
+                }
+
+                index++;
+            }
+
+            for (var i = 1; i <= n; i++)
+            {
+                sum += rowNumbers[rowNumbers.Count - i];
+            }
+
+            return sum;
+        }
+
+        #endregion
+
+        #region Challennge #6: Valid Braces
+        // Sum of odd numbers
+
         #endregion
     }
 }

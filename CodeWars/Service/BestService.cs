@@ -47,5 +47,15 @@ namespace CodeWars.Service
         }
         #endregion
 
+        #region Challennge #5: Sum of odd numbers
+        // Sum of odd numbers
+        public long rowSumOddNumbers(long n) => (n * n * n);
+        #endregion
+
+        #region Challennge #6: Valid Braces
+        // Sum of odd numbers
+
+        #endregion
+
     }
 }

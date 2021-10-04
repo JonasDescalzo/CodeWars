@@ -57,5 +57,27 @@ namespace CodeWars.Controllers
         }
         #endregion
 
+        #region Challennge #5: Sum of odd numbers
+        // Sum of odd numbers
+        [HttpGet("sum-of-odd-numbers/{number}")]
+        public IActionResult RowSumOddNumbers(long number)
+        {
+            var response = _solutionService.rowSumOddNumbers(number);
+
+            return Ok(response);
+        }
+        #endregion
+
+        #region Challennge #6: Valid Braces
+        // Sum of odd numbers
+        [HttpGet("tribonacci/")]
+        public IActionResult Tribonacci()
+        {
+            var response = _solutionService.Tribonacci(new double[] { 1, 1, 1 }, 10);
+
+            return Ok(response);
+        }
+        #endregion
+
     }
 }
