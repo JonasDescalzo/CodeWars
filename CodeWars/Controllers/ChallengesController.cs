@@ -44,6 +44,13 @@ namespace CodeWars.Controllers
 
         #region Challenge #3: Tribonacci Sequence
         //Challenge #3: Tribonacci Sequence
+        [HttpGet("tribonacci/")]
+        public IActionResult Tribonacci()
+        {
+            var response = _solutionService.Tribonacci(new double[] { 1, 1, 1 }, 10);
+
+            return Ok(response);
+        }
         #endregion
 
         #region Challenge #4: Regex validate PIN code
@@ -70,10 +77,21 @@ namespace CodeWars.Controllers
 
         #region Challennge #6: Valid Braces
         // Sum of odd numbers
-        [HttpGet("tribonacci/")]
-        public IActionResult Tribonacci()
+        [HttpGet("valid-braces/{braces}")]
+        public IActionResult ValidBraces(string braces)
         {
-            var response = _solutionService.Tribonacci(new double[] { 1, 1, 1 }, 10);
+            var response = _solutionService.validBraces(braces);
+
+            return Ok(response);
+        }
+        #endregion
+
+        #region Challennge #7: Narcissistic Number
+        // Does my number look big in this?
+        [HttpGet("narcissistic-number/{value}")]
+        public IActionResult Narcissistic(int value)
+        {
+            var response = _solutionService.Narcissistic(value);
 
             return Ok(response);
         }

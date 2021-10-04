@@ -70,7 +70,24 @@ namespace CodeWars.Controllers
 
         #region Challennge #6: Valid Braces
         // Sum of odd numbers
+        [HttpGet("best-valid-braces/{braces}")]
+        public IActionResult ValidBraces(string braces)
+        {
+            var response = _bestService.validBraces(braces);
 
+            return Ok(response);
+        }
+        #endregion
+
+        #region Challennge #7: Narcissistic Number
+        // Does my number look big in this?
+        [HttpGet("best-narcissistic-number/{value}")]
+        public IActionResult Narcissistic(int value)
+        {
+            var response = _bestService.Narcissistic(value);
+
+            return Ok(response);
+        }
         #endregion
     }
 }

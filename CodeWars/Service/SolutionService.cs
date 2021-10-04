@@ -150,7 +150,52 @@ namespace CodeWars.Service
 
         #region Challennge #6: Valid Braces
         // Sum of odd numbers
+        public bool validBraces(String braces)
+        {
+            var Open = new List<char>();
+            var Close = new List<char>();
+
+            foreach (var character in braces)
+            {
+                if(character == '(' || character == '{' || character == '[')
+                {
+                    Open.Add(character);
+                }
+
+                if (character == ')' || character == '}' || character == ']')
+                {
+                    Close.Add(character);
+
+                    if(Open.Count > 0 && ((Open.Last() == '(' && Close.Last() == ')') ||
+                        (Open.Last() == '{' && Close.Last() == '}') || (Open.Last() == '[' && Close.Last() == ']')))
+                    {
+                        Open.RemoveAt(Open.Count - 1);
+                        Close.RemoveAt(Close.Count - 1);
+                    }
+                }
+            }
+
+            return Open.Count == 0 && Close.Count == 0;
+        }
 
         #endregion
+
+        #region Challennge #7: Narcissistic Number
+        // Does my number look big in this?
+        public bool Narcissistic(int value)
+        {
+            double result = 0;
+            
+            var digits = Array.ConvertAll(value.ToString().ToCharArray(), c => (int)Char.GetNumericValue(c));
+
+            foreach (var n in digits)
+            {
+                result += Math.Pow(n, value.ToString().Length);
+            }
+
+            return result == value;
+        }
+        #endregion
+
     }
 }

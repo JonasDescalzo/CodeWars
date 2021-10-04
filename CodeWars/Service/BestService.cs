@@ -54,7 +54,38 @@ namespace CodeWars.Service
 
         #region Challennge #6: Valid Braces
         // Sum of odd numbers
+        public bool validBraces(String braces)
+        {
+            var st = new Stack<char>();
+            foreach (var c in braces)
+                switch (c)
+                {
+                    case '(':
+                    case '[':
+                    case '{':
+                        st.Push(c);
+                        continue;
+                    case ')':
+                        if (st.Count == 0 || st.Pop() != '(') return false;
+                        continue;
+                    case ']':
+                        if (st.Count == 0 || st.Pop() != '[') return false;
+                        continue;
+                    case '}':
+                        if (st.Count == 0 || st.Pop() != '{') return false;
+                        continue;
+                }
+            return st.Count == 0;
+        }
+        #endregion
 
+        #region Challennge #7: Narcissistic Number
+        // Does my number look big in this?
+        public bool Narcissistic(int value)
+        {
+            var str = value.ToString();
+            return str.Sum(c => Math.Pow(Convert.ToInt16(c.ToString()), str.Length)) == value;
+        }
         #endregion
 
     }
