@@ -97,5 +97,28 @@ namespace CodeWars.Controllers
         }
         #endregion
 
+        #region Challennge #8: Decode the Morse code
+        // Decode the Morse code
+        [HttpGet("decode-morse-code/{message}")]
+        public IActionResult DecodeMorseCode(string message)
+        {
+            var response = _solutionService.Decode(message);
+
+            return Ok(response);
+        }
+        #endregion
+
+        #region Challennge #9: Find the missing letter
+        // Find the missing letter
+        [HttpPost("missing-letter/")]
+        public IActionResult FindMissingLetter([FromBody]string letters)
+        {
+            var array_letters = letters.ToCharArray();
+            var response = _solutionService.FindMissingLetter(array_letters);
+
+            return Ok(response);
+        }
+        #endregion
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CodeWars.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -88,5 +89,22 @@ namespace CodeWars.Service
         }
         #endregion
 
+        #region Challennge #8: Decode the Morse code
+        // Decode the Morse code
+        public string Decode(string morseCode)
+        {
+            var words = morseCode.Trim().Split(new[] { "   " }, StringSplitOptions.None);
+            var translatedWords = words.Select(word => word.Split(' ')).Select(letters => string.Join("", letters.Select(c => MorseCode.Get(c)))).ToList();
+            return string.Join(" ", translatedWords);
+        }
+        #endregion
+
+        #region Challennge #9: Find the missing letter
+        // Find the missing letter
+        public char FindMissingLetter(char[] array)
+        {
+            return ' ';
+        }
+        #endregion
     }
 }

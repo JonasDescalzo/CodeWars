@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using CodeWars.Helpers;
 
 namespace CodeWars.Service
 {
@@ -194,6 +195,46 @@ namespace CodeWars.Service
             }
 
             return result == value;
+        }
+        #endregion
+
+        #region Challennge #8: Decode the Morse code
+        // Decode the Morse code
+        public string Decode(string morseCode)
+        {
+            string[] codes = morseCode.Trim().Split("   ");
+
+            for (int i = 0; i < codes.Length; i++)
+            {
+                string[] letters = codes[i].Split(" ");
+
+                for (int c = 0; c < letters.Length; c++)
+                {
+                    letters[c] = MorseCode.Get(letters[c]);
+                }
+
+                codes[i] = String.Join("", letters);
+            }
+
+            return String.Join(" ", codes);
+        }
+        #endregion
+
+        #region Challennge #9: Find the missing letter
+        // Find the missing letter
+        public char FindMissingLetter(char[] array)
+        {
+            var num = array.Select(Convert.ToInt32).ToArray();
+
+            for (int i = 0; i < num.Length; i++)
+            {
+                if (num[i + 1] - num[i] == 2)
+                {
+                    return Convert.ToChar(num[i] + 1);
+                }
+            }
+
+            return ' ';
         }
         #endregion
 

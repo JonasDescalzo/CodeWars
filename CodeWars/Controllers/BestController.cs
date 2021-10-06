@@ -1,4 +1,5 @@
-﻿using CodeWars.Service;
+﻿using CodeWars.Helpers;
+using CodeWars.Service;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -88,6 +89,22 @@ namespace CodeWars.Controllers
 
             return Ok(response);
         }
+        #endregion
+
+        #region Challennge #8: Decode the Morse code
+        // Decode the Morse code
+        [HttpGet("best-decode-morse-code/{message}")]
+        public IActionResult DecodeMorseCode(string message)
+        {
+            var response = _bestService.Decode(message);
+
+            return Ok(response);
+        }
+        #endregion
+
+        #region Challennge #9: Find the missing letter
+        // Find the missing letter
+        
         #endregion
     }
 }
