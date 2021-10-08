@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 namespace CodeWars.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
     public class ChallengesController : ControllerBase
     {
         #region Object and Constructor
@@ -115,6 +114,31 @@ namespace CodeWars.Controllers
         {
             var array_letters = letters.ToCharArray();
             var response = _solutionService.FindMissingLetter(array_letters);
+
+            return Ok(response);
+        }
+        #endregion
+
+        #region Challennge #10: RGB To Hex Conversion
+        // RGB To Hex Conversion
+        [HttpPost("rgb-to-hex/{r}/{g}/{b}")]
+        public IActionResult Rgb(int r, int g, int b)
+        {
+            var response = _solutionService.Rgb(r, g, b);
+
+            return Ok(response);
+        }
+        #endregion
+
+        #region Challennge #11: Are they the "same"?
+        // Are they the "same"?
+        [HttpGet("compare-square-array/")]
+        public IActionResult CompareSquareArray()
+        {
+            var a = new int[] { 0,0,0 };
+            var b = new int[] { 0,0,0 };
+
+            var response = _solutionService.comp( a, b );
 
             return Ok(response);
         }

@@ -238,5 +238,53 @@ namespace CodeWars.Service
         }
         #endregion
 
+        #region Challennge #10: RGB To Hex Conversion
+        // RGB To Hex Conversion
+        public string Rgb(int r, int g, int b)
+        {
+            var rgb_array = new int[] { r, g, b };
+
+            var result = "";
+
+            for (int i = 0; i < 3; i++)
+            {
+                rgb_array[i] = rgb_array[i] < 0 ? 0 : rgb_array[i];
+                rgb_array[i] = rgb_array[i] > 255 ? 255 : rgb_array[i];
+
+                int whole = rgb_array[i] / 16;
+                int remainder = rgb_array[i] % 16;
+
+                result += whole > 9 ? Convert.ToChar(whole + 55).ToString() : whole.ToString();
+                result += remainder > 9 ? Convert.ToChar(remainder + 55).ToString() : remainder.ToString();
+            }
+
+            return result;
+        }
+        #endregion
+
+
+        #region Challennge #11: Are they the "same"?
+        // Are they the "same"?
+        public bool comp(int[] a, int[] b)
+        {
+            if(a == null || b == null)
+            {
+                return false;
+            }
+
+            Array.Sort(a);
+            Array.Sort(b);
+
+            var result = true;
+
+            for (int i = 0; i < a.Length; i++)
+            {
+                result = result && a[i] * a[i] == b[i];
+            }
+
+            return result;
+        }
+        #endregion
+
     }
 }

@@ -99,12 +99,21 @@ namespace CodeWars.Service
         }
         #endregion
 
-        #region Challennge #9: Find the missing letter
-        // Find the missing letter
-        public char FindMissingLetter(char[] array)
+        #region Challennge #10: RGB To Hex Conversion
+        // RGB To Hex Conversion
+        public string Rgb(int r, int g, int b)
         {
-            return ' ';
+            r = Math.Max(Math.Min(255, r), 0);
+            g = Math.Max(Math.Min(255, g), 0);
+            b = Math.Max(Math.Min(255, b), 0);
+            return String.Format("{0:X2}{1:X2}{2:X2}", r, g, b);
         }
+        #endregion
+
+        #region Challennge #11: Are they the "same"?
+        // Are they the "same"?
+
+
         #endregion
     }
 }

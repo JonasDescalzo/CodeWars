@@ -102,9 +102,22 @@ namespace CodeWars.Controllers
         }
         #endregion
 
-        #region Challennge #9: Find the missing letter
-        // Find the missing letter
+        #region Challennge #10: RGB To Hex Conversion
+        // RGB To Hex Conversion
         
+        [HttpPost("best-rgb-to-hex/{r}/{g}/{b}")]
+        public IActionResult Rgb(int r, int g, int b)
+        {
+            var response = _bestService.Rgb(r, g, b);
+
+            return Ok(response);
+        }
+        #endregion
+
+        #region Challennge #11: Are they the "same"?
+        // Are they the "same"?
+
+
         #endregion
     }
 }
