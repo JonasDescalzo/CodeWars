@@ -262,12 +262,11 @@ namespace CodeWars.Service
         }
         #endregion
 
-
         #region Challennge #11: Are they the "same"?
         // Are they the "same"?
         public bool comp(int[] a, int[] b)
         {
-            if(a == null || b == null)
+            if(a == null || b == null || a.Length != b.Length)
             {
                 return false;
             }
@@ -286,5 +285,38 @@ namespace CodeWars.Service
         }
         #endregion
 
+        #region Challennge #12: The Supermarket Queue
+        //The Supermarket Queue
+        public long QueueTime(int[] customers, int n)
+        {
+            var tills = new int[n];
+            
+            for (int i = 0; i < customers.Length; i++)
+            {
+                tills[0] += customers[i];
+                Array.Sort(tills);
+            }
+
+            return Convert.ToInt64(tills[tills.Length - 1]);
+        }
+        #endregion
+
+        #region Challennge #13: Write Number in Expanded Form
+        //Write Number in Expanded Form
+        public string ExpandedForm(long num)
+        {
+            var digits = Array.ConvertAll(num.ToString().ToCharArray(), c => (long)Char.GetNumericValue(c));
+
+            for (int i = 0; i < digits.Count(); i++)
+            {
+                for (int o = i; o < digits.Count()-1; o++)
+                {
+                    digits[i] *= 10;
+                }
+            }
+
+            return String.Join(" + ", digits.Where(c => c != 0).ToList());
+        }
+        #endregion
     }
 }

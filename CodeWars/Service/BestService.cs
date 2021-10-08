@@ -112,8 +112,44 @@ namespace CodeWars.Service
 
         #region Challennge #11: Are they the "same"?
         // Are they the "same"?
+        public bool comp(int[] a, int[] b)
+        {
+            if ((a == null) || (b == null))
+            {
+                return false;
+            }
 
+            int[] copy = a.Select(x => x * x).ToArray();
+            Array.Sort(copy);
+            Array.Sort(b);
 
+            return copy.SequenceEqual(b);
+        }
+        #endregion
+
+        #region Challennge #12: The Supermarket Queue
+        //The Supermarket Queue
+        public long QueueTime(int[] customers, int n)
+        {
+            var registers = new List<int>(Enumerable.Repeat(0, n));
+
+            foreach (int cust in customers)
+            {
+                registers[registers.IndexOf(registers.Min())] += cust;
+            }
+            return registers.Max();
+        }
+        #endregion
+
+        #region Challennge #13: Write Number in Expanded Form
+        //Write Number in Expanded Form
+        public string ExpandedForm(long num)
+        {
+            var str = num.ToString();
+            return String.Join(" + ", str
+                .Select((x, i) => char.GetNumericValue(x) * Math.Pow(10, str.Length - i - 1))
+                .Where(x => x > 0));
+        }
         #endregion
     }
 }

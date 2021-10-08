@@ -1,4 +1,5 @@
-﻿using CodeWars.Service;
+﻿using CodeWars.Models;
+using CodeWars.Service;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -142,6 +143,29 @@ namespace CodeWars.Controllers
 
             return Ok(response);
         }
+        #endregion
+
+        #region Challennge #12: The Supermarket Queue
+        //The Supermarket Queue
+        [HttpGet("supermarket-queue/")]
+        public IActionResult SupermarketQueue(SuperMarketQueue request)
+        {
+            var response = _solutionService.QueueTime(request.customers, request.n);
+
+            return Ok(response);
+        }
+        #endregion
+
+        #region Challennge #13: Write Number in Expanded Form
+        //Write Number in Expanded Form
+        [HttpGet("supermarket-queue/{number}")]
+        public IActionResult ExpandNumber(long number)
+        {
+            var response = _solutionService.ExpandedForm(number);
+
+            return Ok(response);
+        }
+
         #endregion
 
     }

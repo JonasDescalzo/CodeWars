@@ -1,4 +1,5 @@
 ﻿using CodeWars.Helpers;
+using CodeWars.Models;
 using CodeWars.Service;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -116,7 +117,38 @@ namespace CodeWars.Controllers
 
         #region Challennge #11: Are they the "same"?
         // Are they the "same"?
+        [HttpGet("best-compare-square-array/")]
+        public IActionResult CompareSquareArray()
+        {
+            var a = new int[] { 0, 0, 0 };
+            var b = new int[] { 0, 0, 0 };
 
+            var response = _bestService.comp(a, b);
+
+            return Ok(response);
+        }
+        #endregion
+
+        #region Challennge #12: The Supermarket Queue
+        //The Supermarket Queue
+        [HttpGet("best-supermarket-queue/")]
+        public IActionResult SupermarketQueue(SuperMarketQueue request)
+        {
+            var response = _bestService.QueueTime(request.customers, request.n);
+
+            return Ok(response);
+        }
+        #endregion
+
+        #region Challennge #13: Write Number in Expanded Form
+        //Write Number in Expanded Form
+        [HttpGet("best-supermarket-queue/{number}")]
+        public IActionResult ExpandNumber(long number)
+        {
+            var response = _bestService.ExpandedForm(number);
+
+            return Ok(response);
+        }
 
         #endregion
     }
