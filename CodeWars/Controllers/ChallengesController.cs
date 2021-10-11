@@ -168,5 +168,16 @@ namespace CodeWars.Controllers
 
         #endregion
 
+        #region Challennge #14: Playing with digits
+        //Playing with digits
+        [HttpGet("playing-with-digits/{number}/{pow}")]
+        public IActionResult PlayingWithDigits(int number,int pow)
+        {
+            var response = _solutionService.digPow(number, pow);
+
+            return Ok(response);
+        }
+        #endregion
+
     }
 }

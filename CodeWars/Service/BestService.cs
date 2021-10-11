@@ -151,5 +151,14 @@ namespace CodeWars.Service
                 .Where(x => x > 0));
         }
         #endregion
+
+        #region Challennge #14: Playing with digits
+        //Playing with digits
+        public long digPow(int n, int p)
+        {
+            var sum = Convert.ToInt64(n.ToString().Select(s => Math.Pow(int.Parse(s.ToString()), p++)).Sum());
+            return sum % n == 0 ? sum / n : -1;
+        }
+        #endregion
     }
 }

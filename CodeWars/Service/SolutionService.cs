@@ -318,5 +318,26 @@ namespace CodeWars.Service
             return String.Join(" + ", digits.Where(c => c != 0).ToList());
         }
         #endregion
+
+        #region Challennge #14: Playing with digits
+        //Playing with digits
+        public long digPow(int n, int p)
+        {
+            var digits = Array.ConvertAll(n.ToString().ToCharArray(), c => (long)Char.GetNumericValue(c));
+
+            double sum = 0;
+
+            for (int i = 0; i < digits.Length; i++)
+            {
+                sum += Math.Pow(digits[i], p + i);
+            }
+
+            var result = sum % n == 0 ? sum / n : -1;
+
+            return Convert.ToInt64(result);
+        }
+        #endregion
+
+
     }
 }
