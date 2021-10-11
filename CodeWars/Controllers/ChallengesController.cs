@@ -179,5 +179,20 @@ namespace CodeWars.Controllers
         }
         #endregion
 
+        #region Challennge #15: PaginationHelper
+        //PaginationHelper
+        // Service > Challenge15
+        #endregion
+
+        #region Challennge #16: Permutations
+        //Permutations
+        [HttpGet("single-permutations/{word}")]
+        public IActionResult PlayingWithDigits(string word)
+        {
+            var response = _solutionService.SinglePermutations(word);
+
+            return Ok(response);
+        }
+        #endregion
     }
 }

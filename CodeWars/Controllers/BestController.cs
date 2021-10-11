@@ -162,5 +162,19 @@ namespace CodeWars.Controllers
             return Ok(response);
         }
         #endregion
+
+        #region Challennge #16: Permutations
+        //Permutations
+        [HttpGet("best-single-permutations/{word}")]
+        public IActionResult SinglePermutations(string word)
+        {
+            var response = _bestService.SinglePermutations(word);
+
+            return Ok(response);
+        }
+        #endregion
+
+
+
     }
 }

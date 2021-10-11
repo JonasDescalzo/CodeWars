@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -159,6 +160,45 @@ namespace CodeWars.Service
             var sum = Convert.ToInt64(n.ToString().Select(s => Math.Pow(int.Parse(s.ToString()), p++)).Sum());
             return sum % n == 0 ? sum / n : -1;
         }
+        #endregion
+
+        #region Challennge #16: Permutations
+        //Permutations
+        public List<string> SinglePermutations(string s)
+        {
+            // Your code here!
+            List<string> returnstrings = new List<string>();
+            if (s.Length == 1)
+            {
+                returnstrings.Add(s);
+            }
+            else
+            {
+                for (int x = 0; x < s.Length; x++)
+                {
+                    returnstrings.AddRange(SinglePermutations(s.Remove(x, 1)).Select(z => s[x] + z));
+                }
+            }
+
+            return returnstrings.Distinct().ToList();
+        }
+
+        //public static List<string> SinglePermutations(string s)
+        //{
+        //    if (s.Length < 2)
+        //    {
+        //        return new List<string> { s };
+        //    }
+        //    var result = new HashSet<string>();
+        //    foreach (var sub in SinglePermutations(s.Substring(1)))
+        //    {
+        //        for (int i = 0; i <= sub.Length; i++)
+        //        {
+        //            result.Add(sub.Substring(0, i) + s[0] + sub.Substring(i));
+        //        }
+        //    }
+        //    return result.ToList();
+        //}
         #endregion
     }
 }

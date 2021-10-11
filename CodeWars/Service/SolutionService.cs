@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using CodeWars.Helpers;
+using System.Text;
 
 namespace CodeWars.Service
 {
@@ -335,6 +336,77 @@ namespace CodeWars.Service
             var result = sum % n == 0 ? sum / n : -1;
 
             return Convert.ToInt64(result);
+        }
+        #endregion
+
+        #region Challennge #15: PaginationHelper
+        //PaginationHelper
+        // Service > Challenge15
+        #endregion
+
+        #region Challennge #16: Permutations
+        //Permutations
+        public List<string> SinglePermutations(string s)
+        {
+            var indexes = new int[s.Length];
+
+            for (int i = 0; i < indexes.Length; i++)
+            {
+                indexes[i] = i;
+            }
+
+            var list = new List<IList<int>>();
+
+            var numbers = DoPermute(indexes, 0, indexes.Length - 1, list);
+
+            var result = new List<string>();
+
+            foreach (var item in numbers)
+            {
+                result.Add(intArrayToString(item, s));
+            }
+
+            return result.Distinct().ToList();
+        }
+
+        static string intArrayToString(IList<int> indexes, string word)
+        {
+            var newWord = new StringBuilder();
+
+            for (int i = 0; i < word.Length; i++)
+            {
+                newWord.Append(word[indexes[i]]);
+            }
+
+            return newWord.ToString();
+        }
+
+        static IList<IList<int>> DoPermute(int[] nums, int start, int end, IList<IList<int>> list)
+        {
+            if (start == end)
+            {
+                // We have one of our possible n! solutions,
+                // add it to the list.
+                list.Add(new List<int>(nums));
+            }
+            else
+            {
+                for (var i = start; i <= end; i++)
+                {
+                    Swap(ref nums[start], ref nums[i]);
+                    DoPermute(nums, start + 1, end, list);
+                    Swap(ref nums[start], ref nums[i]);
+                }
+            }
+
+            return list;
+        }
+
+        static void Swap(ref int a, ref int b)
+        {
+            var temp = a;
+            a = b;
+            b = temp;
         }
         #endregion
 

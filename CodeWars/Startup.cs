@@ -27,6 +27,7 @@ namespace CodeWars
         {
             services.AddTransient<SolutionService>();
             services.AddTransient<BestService>();
+            //services.AddTransient<Challenge15_PaginationHelper<char>>();
 
             services.AddControllersWithViews();
 
