@@ -194,5 +194,38 @@ namespace CodeWars.Controllers
             return Ok(response);
         }
         #endregion
+
+        #region Challennge #17: First non-repeating character
+        //First non-repeating character
+        [HttpGet("non-repeating-character/{word}")]
+        public IActionResult FirstNonRepeatingLetter(string word)
+        {
+            var response = _solutionService.FirstNonRepeatingLetter(word);
+
+            return Ok(response);
+        }
+        #endregion
+
+        #region Challennge #18: Sum by Factors
+        //Sum by Factors
+        [HttpPost("sum-by-factors/")]
+        public IActionResult SumByFactors([FromBody] SumByFactors sumByFactors)
+        {
+            var response = _solutionService.sumOfDivided(sumByFactors.numbers);
+
+            return Ok(response);
+        }
+        #endregion
+
+        #region Challennge #19: Directions Reduction
+        //Directions Reduction
+        [HttpPost("directions-reduction/")]
+        public IActionResult dirReduc([FromBody] String[] directions)
+        {
+            var response = _solutionService.dirReduc(directions);
+
+            return Ok(response);
+        }
+        #endregion
     }
 }

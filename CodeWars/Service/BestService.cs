@@ -200,5 +200,22 @@ namespace CodeWars.Service
         //    return result.ToList();
         //}
         #endregion
+
+        #region Challennge #17: First non-repeating character
+        //First non-repeating character
+        public string FirstNonRepeatingLetter(string s)
+        {
+            return s.GroupBy(char.ToLower)
+                    .Where(gr => gr.Count() == 1)
+                    .Select(x => x.First().ToString())
+                    .DefaultIfEmpty("")
+                    .First();
+        }
+        #endregion
+
+        #region Challennge #18: Sum by Factors
+        //Sum by Factors
+
+        #endregion
     }
 }

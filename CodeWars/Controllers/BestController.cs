@@ -174,7 +174,21 @@ namespace CodeWars.Controllers
         }
         #endregion
 
+        #region Challennge #17: First non-repeating character
+        //First non-repeating character
+        [HttpGet("best-non-repeating-character/{word}")]
+        public IActionResult FirstNonRepeatingLetter(string word)
+        {
+            var response = _bestService.FirstNonRepeatingLetter(word);
 
+            return Ok(response);
+        }
+        #endregion
+
+        #region Challennge #18: Sum by Factors
+        //Sum by Factors
+
+        #endregion
 
     }
 }

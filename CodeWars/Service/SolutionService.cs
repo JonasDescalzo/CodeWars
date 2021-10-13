@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using CodeWars.Helpers;
-using System.Text;
 
 namespace CodeWars.Service
 {
@@ -407,6 +407,87 @@ namespace CodeWars.Service
             var temp = a;
             a = b;
             b = temp;
+        }
+        #endregion
+
+        #region Challennge #17: First non-repeating character
+        //First non-repeating character
+        public string FirstNonRepeatingLetter(string s)
+        {
+            var word = s.ToUpper();
+
+            List<char> distincts = word.Distinct().ToList();
+
+            var letters = new Dictionary<char, int>();
+
+            for (int i = 0; i < distincts.Count; i++)
+            {
+
+                letters.Add(distincts[i], word.Where(c => c == distincts[i]).Count());
+            }
+
+            var test = word.IndexOf(letters.Where(c => c.Value == 1).FirstOrDefault().Key);
+
+            var result = test == -1 ? "" : s[test].ToString();
+
+            return result;
+        }
+        #endregion
+
+        #region Challennge #18: Sum by Factors
+        //Sum by Factors
+        public string sumOfDivided(int[] lst)
+        {
+            var factors = new List<int>();
+
+            foreach (var item in lst)
+            {
+                factors.Add(Math.Abs(item));
+                factors.AddRange(getFactors(Math.Abs(item)));
+            }
+
+            factors = factors.Distinct().ToList();
+
+            var primeFactors = factors.Where(f => getFactors(f).Count == 0).ToList();
+
+            primeFactors.Sort();
+
+            var result = new StringBuilder();
+
+            for (int i = 0; i < primeFactors.Count; i++)
+            {
+                result.Append(String.Format("({0} {1})", primeFactors[i], lst.Where(n => n % primeFactors[i] == 0).Sum()));
+            }
+
+            return result.ToString();
+        }
+
+        private static List<int> getFactors(int number)
+        {
+            var factors = new List<int>();
+
+            //number *= number < 0 ? -1 : 1; 
+
+            for (int i = 2; i < number; i++)
+            {
+
+                if(number % i == 0)
+                {
+                    factors.Add(i);
+                }
+            }
+
+            return factors;
+        }
+        #endregion
+
+        #region Challennge #19: Directions Reduction
+        //Directions Reduction
+        public string[] dirReduc(String[] arr)
+        {
+            var result = new string[1];
+
+            return arr;
         }
         #endregion
 
