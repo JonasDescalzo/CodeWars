@@ -26,6 +26,7 @@ namespace CodeWars
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<SolutionService>();
+            services.AddTransient<SolutionService2>();
             services.AddTransient<BestService>();
             //services.AddTransient<Challenge15_PaginationHelper<char>>();
 
