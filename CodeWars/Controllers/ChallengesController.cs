@@ -227,5 +227,16 @@ namespace CodeWars.Controllers
             return Ok(response);
         }
         #endregion
+
+        #region Challennge #20: Alphabetic Anagrams
+        //Alphabetic Anagrams
+        [HttpPost("alphabetic-anagrams/{word}")]
+        public IActionResult AlphabeticAnagrams(string word)
+        {
+            var response = _solutionService.ListPosition(word);
+
+            return Ok(response);
+        }
+        #endregion
     }
 }

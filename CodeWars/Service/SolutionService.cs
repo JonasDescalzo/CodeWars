@@ -485,12 +485,74 @@ namespace CodeWars.Service
         //Directions Reduction
         public string[] dirReduc(String[] arr)
         {
-            var result = new string[1];
+            var result = arr.ToList();
 
-            return arr;
+            for (int i = 0; i < result.Count; i++)
+            {
+                var current = "";
+                var next = "";
+
+                if (i != result.Count-1)
+                {
+                    current = result[i].ToUpper();
+                    next = result[i + 1].ToUpper();
+                }
+                
+                if ((current == "NORTH" && next == "SOUTH") || (current == "SOUTH" && next == "NORTH") ||
+                    (current == "EAST" && next == "WEST") || (current == "WEST" && next == "EAST"))
+                {
+                    result.RemoveRange(i, 2);
+                    i = -1;
+                    continue;
+                }
+            }
+
+            return result.ToArray();
         }
         #endregion
 
+        #region Challennge #20: sumStrings
+        //sumStrings
+        public string sumStrings(string a, string b) 
+        {
+            var result = Convert.ToInt64(a) + Convert.ToInt64(b);
+
+            return result.ToString();
+        }
+        #endregion
+
+        #region Challennge #21: Alphabetic Anagrams
+        //Alphabetic Anagrams
+        public long ListPosition(string value)
+        {
+            var wordlist = Permutation(value.ToLower());
+
+            wordlist.Sort();
+
+            long position = wordlist.IndexOf(value.ToLower()) + 1;
+
+            return position;
+        }
+
+        public static List<string> Permutation(string s)
+        {
+            if (s.Length < 2)
+            {
+                return new List<string> { s };
+            }
+            var result = new HashSet<string>();
+            foreach (var sub in Permutation(s.Substring(1)))
+            {
+                for (int i = 0; i <= sub.Length; i++)
+                {
+                    result.Add(sub.Substring(0, i) + s[0] + sub.Substring(i));
+                }
+
+                var test = sub;
+            }
+            return result.ToList();
+        }
+        #endregion
 
     }
 }
