@@ -29,5 +29,16 @@ namespace CodeWars.Controllers
             return Ok(response);
         }
         #endregion
+
+        #region Challennge #22: Next smaller number with the same digits
+        //Next smaller number with the same digits
+        [HttpPost("next-smaller-number/{number}")]
+        public IActionResult NextSmaller(long number)
+        {
+            var response = _solutionService2.NextSmaller(number);
+
+            return Ok(response);
+        }
+        #endregion
     }
 }
