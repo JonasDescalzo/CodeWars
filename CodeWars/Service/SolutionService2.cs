@@ -281,5 +281,148 @@ namespace CodeWars.Service
             return finalized;
         }
         #endregion
+
+        #region Challennge #26: Conway's Game of Life - Unlimited Edition [UNSOLVED]
+        //Conway's Game of Life - Unlimited Edition
+        public int[,] GetGeneration(int[,] cells, int generation)
+        {
+            var squareRoot = Math.Sqrt(cells.Length);
+
+            var cellCopy = new int[cells.GetLength(0), cells.GetLength(1)];
+
+            for (int i = 0; i < squareRoot; i++)
+            {
+                for (int k = 0; k < squareRoot; k++)
+                {
+                    var neighbor = new List<int>();
+
+                    #region Count neighbor
+                    if (i == 0 && k == 0)//north-west corner
+                    {
+                        neighbor.Add(cells[i, k + 1]);//east
+                        neighbor.Add(cells[i + 1, k]);//south
+                        neighbor.Add(cells[i + 1, k + 1]);//south-east
+                    }
+                    else if (i == 0 && k == squareRoot - 1)//north-east corner
+                    {
+                        neighbor.Add(cells[i, k - 1]);//west
+                        neighbor.Add(cells[i + 1, k - 1]);//south-west
+                        neighbor.Add(cells[i + 1, k]);//south
+                    }
+                    else if (i == squareRoot - 1 && k == 0)//south-west corner
+                    {
+                        neighbor.Add(cells[i - 1, k]);//north
+                        neighbor.Add(cells[i - 1, k + 1]);//north-east
+                        neighbor.Add(cells[i, k + 1]);//east
+                    }
+                    else if (i == squareRoot - 1 && k == squareRoot - 1)//south-east corner
+                    {
+                        neighbor.Add(cells[i - 1, k - 1]);//north-west
+                        neighbor.Add(cells[i - 1, k]);//north
+                        neighbor.Add(cells[i, k - 1]);//east
+                    }
+                    else if (i == 0)//NORTH border
+                    {
+                        neighbor.Add(cells[i, k - 1]);//west
+                        neighbor.Add(cells[i, k + 1]);//east
+                        neighbor.Add(cells[i + 1, k - 1]);//south-west
+                        neighbor.Add(cells[i + 1, k]);//south
+                        neighbor.Add(cells[i + 1, k + 1]);//south-east
+                    }
+                    else if (k == 0)//WEST border
+                    {
+                        neighbor.Add(cells[i - 1, k]);//north
+                        neighbor.Add(cells[i - 1, k + 1]);//north-east
+                        neighbor.Add(cells[i, k + 1]);//east
+                        neighbor.Add(cells[i + 1, k]);//south
+                        neighbor.Add(cells[i + 1, k + 1]);//south-east
+                    }
+                    else if (k == squareRoot - 1)//EAST border
+                    {
+                        neighbor.Add(cells[i - 1, k - 1]);//north-west
+                        neighbor.Add(cells[i - 1, k]);//north
+                        neighbor.Add(cells[i, k - 1]);//west
+                        neighbor.Add(cells[i + 1, k - 1]);//south-west
+                        neighbor.Add(cells[i + 1, k]);//south
+                    }
+                    else if (i == squareRoot - 1)//SOUTH border
+                    {
+                        neighbor.Add(cells[i - 1, k - 1]);//north-west
+                        neighbor.Add(cells[i - 1, k]);//north
+                        neighbor.Add(cells[i - 1, k + 1]);//north-east
+                        neighbor.Add(cells[i, k - 1]);//west
+                        neighbor.Add(cells[i, k + 1]);//east
+                    }
+                    else
+                    {
+                        neighbor.Add(cells[i - 1, k - 1]);//north-west
+                        neighbor.Add(cells[i - 1, k]);//north
+                        neighbor.Add(cells[i - 1, k + 1]);//north-east
+                        neighbor.Add(cells[i, k + 1]);//east
+                        neighbor.Add(cells[i, k - 1]);//west
+                        neighbor.Add(cells[i + 1, k - 1]);//south-west
+                        neighbor.Add(cells[i + 1, k]);//south
+                        neighbor.Add(cells[i + 1, k + 1]);//south-east
+                    }
+                    #endregion
+
+                    var neighborCount = neighbor.Sum();
+
+                    cellCopy[i, k] = neighborCount > 3 || neighborCount == 1 ? 0 : 1;
+
+                    if (neighborCount > 3 || neighborCount == 1)
+                    {
+                        cellCopy[i, k] = 0;
+                    }
+                    else
+                    {
+                        cellCopy[i, k] = neighborCount == 3 ? 1 : cells[i, k];
+                    }
+                    
+                }
+            }
+
+            return cellCopy;
+        }
+        #endregion
+
+        #region Challennge #27: Range Extraction
+        //Range Extraction
+        public string Extract(int[] args)
+        {
+            var result = "";
+
+            var newArgs = args.Select(c => c.ToString()).ToList();
+
+            for (int i = 0; i < newArgs.Count(); i++)
+            {
+                if(i == 0 || i == newArgs.Count() - 1 )
+                {
+                    continue;
+                }
+                else if (newArgs[i - 1] == "-" && Convert.ToInt32(newArgs[i]) == Convert.ToInt32(newArgs[i + 1]) - 1)
+                {
+                    newArgs.RemoveAt(i);
+                    i--;
+                }
+                else if (newArgs[i - 1] == "-" && Convert.ToInt32(newArgs[i]) != Convert.ToInt32(newArgs[i + 1]) - 1)
+                {
+                    continue;
+                }
+                else if (Convert.ToInt32(newArgs[i]) == Convert.ToInt32(newArgs[i - 1]) + 1 && Convert.ToInt32(newArgs[i]) == Convert.ToInt32(newArgs[i + 1]) - 1)
+                {
+                    newArgs[i] = "-";
+                }
+                
+            }
+
+            result = String.Join(",", newArgs);
+            result = result.Replace(",-,", "-");
+
+            return result;
+        }
+        #endregion
+
+
     }
 }

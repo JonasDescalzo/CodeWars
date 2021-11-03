@@ -73,5 +73,45 @@ namespace CodeWars.Controllers
             return Ok(response);
         }
         #endregion
+
+        #region Challennge #26: Conway's Game of Life - Unlimited Edition
+        //Conway's Game of Life - Unlimited Edition
+        [HttpGet("game-of-life/")]
+        //public IActionResult ConwayGame()
+        public IActionResult ConwayGame()
+        {
+            var sample = new int[,] { { 1, 0, 0 }, { 0, 1, 1 }, { 1, 1, 0 } };
+
+            var response = _solutionService2.GetGeneration(sample, 1);
+
+            var result = "=";
+
+            var squareRoot = Math.Sqrt(response.Length);
+
+            foreach (var item in response)
+            {
+                var addedString = result.Length % (squareRoot + 1) == 0 ? "-" : "";
+
+                result += addedString + item;
+            }
+
+            result = result.Replace("-","\n").Replace("=", "");
+
+            return Ok(result);
+        }
+        #endregion
+
+        #region Challennge #27: Range Extraction
+        //Range Extraction
+        [HttpGet("range-extraction/")]
+        public IActionResult RangeExtraction()
+        {
+            var intArray = new int[] { -6, -3, -2, -1, 0, 1, 3, 4, 5, 7, 8, 9, 10, 11, 14, 15, 17, 18, 19, 20 };
+
+            var response = _solutionService2.Extract(intArray);
+
+            return Ok(response);
+        }
+        #endregion
     }
 }
