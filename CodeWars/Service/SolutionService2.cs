@@ -4,12 +4,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using Serilog;
 using CodeWars.Helpers;
+using CodeWars.Models.Common;
+using CodeWars.Models.CommunicationModels;
 
 namespace CodeWars.Service
 {
     public class SolutionService2
     {
+        #region Object & Contructor
+        #endregion
+
+        #region Practice #0: Practice Method
+        //Adding Big Numbers
+        public void Practice()
+        {
+            var Temp = new List<string>();
+
+        }
+        #endregion
+
         #region Challennge #21: Alphabetic Anagrams [TIMEOUT]
         //Alphabetic Anagrams
         public long ListPosition(string value)
@@ -49,7 +64,7 @@ namespace CodeWars.Service
         {
             //int[] digits
             var digits = Array.ConvertAll(n.ToString().ToCharArray(), c => (int)Char.GetNumericValue(c));
-            
+
             //List<int> sorted
             var sorted = digits.Distinct().ToList();
             sorted.Sort();
@@ -78,7 +93,7 @@ namespace CodeWars.Service
                 }
             }
 
-            if(rightHalf.Count == 0)
+            if (rightHalf.Count == 0)
             {
                 return -1;
             }
@@ -162,12 +177,12 @@ namespace CodeWars.Service
 
             for (int i = 1; i < n; i++)
             {
-                squares[i - 1] = i; 
+                squares[i - 1] = i;
             }
 
-            for (int i = squares.Length - 1 ; i >= 0; i--)
+            for (int i = squares.Length - 1; i >= 0; i--)
             {
-                if(squares[i] * squares[i] <= squared)
+                if (squares[i] * squares[i] <= squared)
                 {
                     result.Add(squares[i]);
                     squared -= squares[i] * squares[i];
@@ -250,7 +265,7 @@ namespace CodeWars.Service
                     }
                 }
 
-                if(tempList.Length > 1)
+                if (tempList.Length > 1)
                 {
                     tempList = prefix + tempList;
                     characterList.Add(tempList);
@@ -378,7 +393,7 @@ namespace CodeWars.Service
                     {
                         cellCopy[i, k] = neighborCount == 3 ? 1 : cells[i, k];
                     }
-                    
+
                 }
             }
 
@@ -396,7 +411,7 @@ namespace CodeWars.Service
 
             for (int i = 0; i < newArgs.Count(); i++)
             {
-                if(i == 0 || i == newArgs.Count() - 1 )
+                if (i == 0 || i == newArgs.Count() - 1)
                 {
                     continue;
                 }
@@ -413,7 +428,7 @@ namespace CodeWars.Service
                 {
                     newArgs[i] = "-";
                 }
-                
+
             }
 
             result = String.Join(",", newArgs);
@@ -423,6 +438,56 @@ namespace CodeWars.Service
         }
         #endregion
 
+        #region Challennge #28: Adding Big Numbers
+        //Adding Big Numbers
+        public string AddBigNumbers(string a, string b)
+        {
+            var first = BigNumbersSolver(a);
+            var second = BigNumbersSolver(b);
+
+            var sample = first[first.Count - 1] + second[second.Count - 1];
+
+            return "";
+        }
+        public List<ulong> BigNumbersSolver(string a)
+        {
+            var c = a;
+            var listA = new List<string>();
+
+            char[] charArray = c.ToCharArray();
+            Array.Reverse(charArray);
+            var aaa = new string(charArray);
+
+            do
+            {
+                if (aaa.Length > 18)
+                {
+                    listA.Add(aaa.Substring(0, 18));
+                    aaa = aaa.Substring(18);
+                }
+                else
+                {
+                    listA.Add(aaa);
+                    aaa = "";
+                }
+
+            } while (aaa.Length > 0);
+
+
+            listA.Reverse();
+
+            for (int i = 0; i < listA.Count; i++)
+            {
+                char[] charArrayy = listA[i].ToCharArray();
+                Array.Reverse(charArrayy);
+                listA[i] = new string(charArrayy);
+            }
+
+            var finalA = listA.Select(c => Convert.ToUInt64(c)).ToList();
+
+            return finalA;
+        }
+        #endregion
 
     }
 }

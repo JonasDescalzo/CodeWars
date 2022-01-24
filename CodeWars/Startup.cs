@@ -1,7 +1,9 @@
-using CodeWars.Service;
+﻿using CodeWars.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -25,9 +27,21 @@ namespace CodeWars
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<SolutionService>();
-            services.AddTransient<SolutionService2>();
-            services.AddTransient<BestService>();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
+            });
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            //用微软的httpclient 工厂,不然容易出现timeawait
+            services.AddHttpClient();
+
+            services.AddScoped<SolutionService>();
+            services.AddScoped<SolutionService2>();
+            services.AddScoped<BestService>();
             //services.AddTransient<Challenge15_PaginationHelper<char>>();
 
             services.AddControllersWithViews();
@@ -57,7 +71,10 @@ namespace CodeWars
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
+
             app.UseStaticFiles();
+
+            app.UseCors("CorsPolicy");
 
             app.UseRouting();
 

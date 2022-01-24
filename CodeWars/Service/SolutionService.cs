@@ -21,8 +21,6 @@ namespace CodeWars.Service
 
             var uniques = "";
 
-            var newString = "";
-
             foreach (var item in distincts)
             {
                 var count = 0;
@@ -34,6 +32,8 @@ namespace CodeWars.Service
 
                 uniques += count < 2 ? item + "" : "";
             }
+
+            var newString = "";
 
             foreach (var item in word)
             {

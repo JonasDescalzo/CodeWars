@@ -1,4 +1,5 @@
 ﻿using CodeWars.Models;
+using CodeWars.Models.CommunicationModels;
 using CodeWars.Service;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -109,6 +110,17 @@ namespace CodeWars.Controllers
             var intArray = new int[] { -6, -3, -2, -1, 0, 1, 3, 4, 5, 7, 8, 9, 10, 11, 14, 15, 17, 18, 19, 20 };
 
             var response = _solutionService2.Extract(intArray);
+
+            return Ok(response);
+        }
+        #endregion
+
+        #region Challennge #28: Adding Big Numbers
+        //Adding Big Numbers
+        [HttpGet("adding-big-numbers/{bigOne}/{bigTwo}")]
+        public IActionResult AddBigNumbers(string bigOne, string bigTwo)
+        {
+            var response = _solutionService2.AddBigNumbers(bigOne, bigTwo);
 
             return Ok(response);
         }
